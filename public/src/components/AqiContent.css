@@ -41,11 +41,6 @@
   border: 1.5px solid #000000;
   display: flex;
 }
-@media (max-width: 768px) {
-  .aqi-box {
-    width: 550px;
-  }
-}
 .aqi-box p {
   display: flex;
   width: 50%;

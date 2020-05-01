@@ -2,34 +2,40 @@ import React from 'react';
 import FocusCity from './FocusCity';
 import './AqiContent.css'
 
-const AqiContent = ({onChangeFocusSite, filterCity, County, datas})=>{
+const AqiContent = ({onChangeFocusSite, County, datas, focusSite})=>{
   return (
     <div>
       <div className="aqi-content-title flex">
         <h2>{ County }</h2>
-        <p>{ filterCity.PublishTime } 更新</p>
+        <p>{ focusSite.PublishTime } 更新</p>
       </div>
       <div className="aqi-content-main flex">
-        <FocusCity  filterCity= {filterCity} />
-        <div className='aqi-content-list'>
+        <FocusCity focusSite= {focusSite}/>
+        <div className='aqi-content-list flex'>
           { 
             datas.map((data, i)=>{
               let color = '';
               let AQI = data.AQI;
-              if(AQI >= 0 && AQI <= 50){
-                color = 'bg-ligth-green';
-              } if (AQI >= 51 && AQI <= 100 ){
-                color = 'bg-light-yellow';
-              } if(AQI >= 101 && AQI <= 150){
-                color = 'bg-light-orange';
-              } if(AQI >= 151 && AQI <= 200){
-                color = 'bg-light-red';
-              } if(AQI >= 201 && AQI <= 300){
-                color = 'bg-light-purple';
-              } if(AQI >=300 && AQI <=400){
-                color = 'bg-dangerous';
+              switch(true){
+                case AQI >= 0 && AQI <= 50 :
+                    color = 'bg-ligth-green';
+                  break;
+                case AQI >= 51 && AQI <= 100 :
+                    color = 'bg-light-yellow';
+                  break;
+                case AQI >= 101 && AQI <= 150 :
+                    color = 'bg-light-orange';
+                  break;
+                case AQI >= 151 && AQI <= 200 :
+                    color = 'bg-light-red';
+                  break;
+                case AQI >= 201 && AQI <= 300 :
+                    color = 'bg-light-purple';
+                  break;
+                case AQI >=300 && AQI <=400 :
+                    color = 'bg-dangerous';
+                  break; 
               }
-
               return (
                 <div 
                   className="aqi-box bg-white"
